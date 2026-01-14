@@ -1,4 +1,14 @@
+/* eslint-disable max-len */
 'use strict';
+
+const {
+  BOARD_SIZE,
+  EMPTY_CELL,
+  NEW_TILE_VALUES,
+  PROBABILITY_TWO,
+  WIN_TILE,
+  GAME_STATUS,
+} = require('../constants/constants');
 
 /* eslint no-console: ["error", { allow: ["warn", "log"] }] */
 
@@ -23,8 +33,8 @@ class Game {
    * initial state.
    */
   constructor(initialState) {
-    this.size = 4;
-    this.status = 'idle';
+    this.size = BOARD_SIZE;
+    this.status = GAME_STATUS.IDLE;
     this.score = 0;
     this.board = initialState || this.createEmptyBoard();
   }
@@ -121,7 +131,7 @@ class Game {
   // Add your own methods here
 
   createEmptyBoard() {
-    return Array.from({ length: this.size }, () => Array(this.size).fill(0));
+    return Array.from({ length: this.size }, () => Array(this.size).fill(EMPTY_CELL));
   }
 
   getEmptyCells() {
@@ -129,7 +139,7 @@ class Game {
 
     for (let row = 0; row < this.size; row++) {
       for (let cell = 0; cell < this.size; cell++) {
-        if (this.board[row][cell] === 0) {
+        if (this.board[row][cell] === EMPTY_CELL) {
           emptyCells.push({
             row, cell,
           });
@@ -148,7 +158,8 @@ class Game {
     }
 
     const randomIndex = Math.floor(Math.random() * emptyCells.length);
-    const randomNumber = Math.random() < 0.9 ? 2 : 4;
+    // eslint-disable-next-line max-len
+    const randomNumber = Math.random() < PROBABILITY_TWO ? NEW_TILE_VALUES.TWO : NEW_TILE_VALUES.FOUR;
     const { row, cell } = emptyCells[randomIndex];
 
     this.board[row][cell] = randomNumber;
@@ -314,12 +325,12 @@ class Game {
   }
 
   checkStatus() {
-    if (this.board.some((row) => row.includes(2048))) {
-      this.status = 'win';
+    if (this.board.some((row) => row.includes(WIN_TILE))) {
+      this.status = GAME_STATUS.WIN;
     }
 
     if (this.getEmptyCells().length === 0 && !this.canMerge()) {
-      this.status = 'lose';
+      this.status = GAME_STATUS.LOSE;
     }
 
     return this.status;
