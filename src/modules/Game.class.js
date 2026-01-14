@@ -130,7 +130,9 @@ class Game {
     for (let row = 0; row < this.size; row++) {
       for (let cell = 0; cell < this.size; cell++) {
         if (this.board[row][cell] === 0) {
-          emptyCells.push({ row, cell });
+          emptyCells.push({
+            row, cell,
+          });
         }
       }
     }
@@ -300,8 +302,8 @@ class Game {
     for (let r = 0; r < this.size - 1; r++) {
       for (let c = 0; c < this.size - 1; c++) {
         if (
-          this.board[r][c] === this.board[r][c + 1] ||
-          this.board[r][c] === this.board[r + 1][c]
+          this.board[r][c] === this.board[r][c + 1]
+          || this.board[r][c] === this.board[r + 1][c]
         ) {
           canMerge = true;
         }
