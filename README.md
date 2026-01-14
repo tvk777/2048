@@ -51,16 +51,19 @@ This project focuses on clarity of code structure and gameplay feel:
 ```bash
 git clone https://github.com/your-username/2048-game.git
 cd 2048-game
+```
 
 ### 2️⃣ Install dependencies
 
 ```bash
 npm install
+```
 
 ### 3️⃣ Start the development server
 
 ```bash
 npm start
+```
 
 ## 🎯 Inspiration
 
