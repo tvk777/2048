@@ -8,7 +8,7 @@ Slide tiles across a **4×4 board**, combine equal values, and try to create the
 ## 🔗 Live Demo
 
 Play it here:
-**https://tvk777.github.io/2048/**
+[DEMO LINK](https://tvk777.github.io/2048/)
 
 ---
 
